@@ -7,4 +7,7 @@ export const ENDPOINT = {
     login: "/api/login",
     logout: "/api/logout",
   },
+  user: {
+    DEFAULT: "/api/users",
+  },
 };

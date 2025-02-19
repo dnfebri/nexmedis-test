@@ -40,7 +40,7 @@ export const NavbarProfile = () => {
                 height={40}
                 width={40}
               />
-              <div className="truncate ltr:pl-4 rtl:pr-4">
+              <div className="truncate pl-4">
                 <h4 className="text-base">
                   John Doe
                   <span className="rounded bg-success-light px-1 text-xs text-success ml-2">
