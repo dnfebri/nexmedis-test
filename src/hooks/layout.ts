@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import toast from "react-hot-toast";
 
 type TLayoutStore = {
   sidebarOpen: boolean;
@@ -6,7 +7,7 @@ type TLayoutStore = {
   minimizeSubMenu: string[];
 };
 
-const layoutStore = create<TLayoutStore>((set) => ({
+const layoutStore = create<TLayoutStore>(() => ({
   sidebarOpen: true,
   minimizeSidebar: false,
   minimizeSubMenu: [],
@@ -14,6 +15,19 @@ const layoutStore = create<TLayoutStore>((set) => ({
 
 export const useLayout = () => {
   const { ...layout } = layoutStore((e) => e);
+
+  const setToast = ({
+    success,
+    error,
+    massage,
+  }: {
+    success?: boolean;
+    error?: boolean;
+    massage: string;
+  }) => {
+    if (success) toast.success(massage);
+    if (error) toast.error(massage);
+  };
 
   const setSidebarOpen = (open: boolean) => {
     layoutStore.setState({ sidebarOpen: open });
@@ -32,5 +46,11 @@ export const useLayout = () => {
       });
     }
   };
-  return { ...layout, setSidebarOpen, setMinimizeSidebar, setMinimizeSubMenu };
+  return {
+    ...layout,
+    setSidebarOpen,
+    setMinimizeSidebar,
+    setMinimizeSubMenu,
+    setToast,
+  };
 };

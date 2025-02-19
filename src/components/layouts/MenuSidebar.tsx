@@ -54,9 +54,10 @@ export const MenuSidebar = ({ mouseEnter }: { mouseEnter: boolean }) => {
                         className={`${
                           currentMenu === item.name ? "active" : ""
                         } nav-link group w-full`}
-                        onClick={() =>
-                          setMinimizeSubMenu(item.name.toLocaleLowerCase())
-                        }
+                        onClick={() => {
+                          setMinimizeSubMenu(item.name.toLocaleLowerCase());
+                          toggleMenu(item.name);
+                        }}
                       >
                         <div className="flex items-center">
                           {ICONS_MENU[item.icon as keyof typeof ICONS_MENU]}
