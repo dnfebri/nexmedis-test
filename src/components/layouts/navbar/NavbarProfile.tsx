@@ -3,11 +3,17 @@ import IconLockDots from "@/components/icon/icon-lock-dots";
 import IconLogout from "@/components/icon/icon-logout";
 import IconMail from "@/components/icon/icon-mail";
 import IconUser from "@/components/icon/icon-user";
+import { useAuth } from "@/hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 export const NavbarProfile = () => {
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <div className="dropdown flex shrink-0">
       <Dropdown
@@ -37,7 +43,7 @@ export const NavbarProfile = () => {
               <div className="truncate ltr:pl-4 rtl:pr-4">
                 <h4 className="text-base">
                   John Doe
-                  <span className="rounded bg-success-light px-1 text-xs text-success ltr:ml-2 rtl:ml-2">
+                  <span className="rounded bg-success-light px-1 text-xs text-success ml-2">
                     Pro
                   </span>
                 </h4>
@@ -52,13 +58,13 @@ export const NavbarProfile = () => {
           </li>
           <li>
             <Link href="/users/profile" className="dark:hover:text-white">
-              <IconUser className="h-4.5 w-4.5 shrink-0 ltr:mr-2 rtl:ml-2" />
+              <IconUser className="h-4.5 w-4.5 shrink-0 mr-2" />
               Profile
             </Link>
           </li>
           <li>
             <Link href="/apps/mailbox" className="dark:hover:text-white">
-              <IconMail className="h-4.5 w-4.5 shrink-0 ltr:mr-2 rtl:ml-2" />
+              <IconMail className="h-4.5 w-4.5 shrink-0 mr-2" />
               Inbox
             </Link>
           </li>
@@ -67,15 +73,21 @@ export const NavbarProfile = () => {
               href="/auth/boxed-lockscreen"
               className="dark:hover:text-white"
             >
-              <IconLockDots className="h-4.5 w-4.5 shrink-0 ltr:mr-2 rtl:ml-2" />
+              <IconLockDots className="h-4.5 w-4.5 shrink-0 mr-2" />
               Lock Screen
             </Link>
           </li>
           <li className="border-t border-white-light dark:border-white-light/10">
-            <Link href="/auth/boxed-signin" className="!py-3 text-danger">
-              <IconLogout className="h-4.5 w-4.5 shrink-0 rotate-90 ltr:mr-2 rtl:ml-2" />
+            {/* <form className="px-[1rem]" onSubmit={handleLogout}>
+              <div className="!py-3 text-danger flex items-center gap-2">
+                <IconLogout className="h-4.5 w-4.5 shrink-0 rotate-90 ltr:mr-2" />
+                <button type="submit">Sign Out</button>
+                </div>
+                </form> */}
+            <button onClick={handleLogout} className="!py-3 text-danger">
+              <IconLogout className="h-4.5 w-4.5 shrink-0 rotate-90 mr-2" />
               Sign Out
-            </Link>
+            </button>
           </li>
         </ul>
       </Dropdown>

@@ -42,7 +42,7 @@ export const useAuth = () => {
     try {
       await ApiAxios.delete(`${DOMAIN_API.domain}${ENDPOINT.auth.logout}`);
       deleteCookie(COOKIES.tokenName);
-      router.push(ROUTES.LOGIN);
+      router.replace(ROUTES.LOGIN);
     } catch (error) {
       console.log("Logout", error);
     } finally {
