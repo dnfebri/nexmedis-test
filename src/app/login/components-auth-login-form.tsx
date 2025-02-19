@@ -1,15 +1,29 @@
 "use client";
 import IconLockDots from "@/components/icon/icon-lock-dots";
 import IconMail from "@/components/icon/icon-mail";
+import { COOKIES } from "@/constants/common";
 import { useAuth } from "@/hooks/useAuth";
 import { TInputForm } from "@/types/inputForm";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const ComponentsAuthLoginForm = () => {
   const { login, isRemember } = useAuth();
   const [inputs, setInputs] = useState<TInputForm>({});
   const [showPasswd, setShowPasswd] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = getCookie(COOKIES.tokenName);
+
+    console.log(token);
+    if (token) {
+      return router.replace("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleShowPasswd = () => {
     setShowPasswd(!showPasswd);

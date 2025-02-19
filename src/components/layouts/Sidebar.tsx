@@ -1,7 +1,6 @@
 "use client";
 import { useLayout } from "@/hooks/layout";
 // import { URL_CDN } from "@/lib/config";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { ButtonMinimizeSidebar } from "../button";
@@ -31,14 +30,8 @@ export const Sidebar = () => {
       } transition-all duration-300 shadow-[5px_0_25px_0_rgba(94,92,154,0.1)]`}
     >
       <div className="h-16 py-2 relative flex items-center px-4 border-b">
-        <div className="relative h-12 aspect-[3/1] overflow-hidden">
-          <Image
-            src={"/asset/b-logo.png"}
-            alt="logo"
-            fill
-            objectFit={`cover`}
-            objectPosition="left"
-          />
+        <div className="relative h-12 aspect-[3/1] overflow-hidden flex items-center">
+          <h1 className="text-2xl font-bold">LOGO</h1>
         </div>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -50,7 +43,7 @@ export const Sidebar = () => {
         </button>
       </div>
       <div className="flex flex-col h-full relative">
-        <MenuSidebar mouseEnter={isMouseEnter} />
+        <MenuSidebar />
         <div
           className={`flex justify-end ${
             !minimizeSidebar && "px-0"
