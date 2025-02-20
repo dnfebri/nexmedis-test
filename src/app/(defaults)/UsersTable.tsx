@@ -24,17 +24,12 @@ export const UsersTable = ({
   getIsPage: (props: string) => void;
   page?: string;
 }) => {
-  const header = ["ID", "Avatar", "Email", "Name", "Action"];
+  const header = ["Avatar", "Email", "Name", "Action"];
 
   const componentData = useMemo(() => {
     return data.map((item, idx) => {
       return (
         <tr key={idx}>
-          <td>
-            <div className="flex items-center gap-2">
-              <p>{item.id}</p>
-            </div>
-          </td>
           <td>
             <Image
               className="h-10 w-10 rounded-md object-cover"

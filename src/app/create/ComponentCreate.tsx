@@ -6,7 +6,7 @@ import { useLayout } from "@/hooks/layout";
 
 export const ComponentCreate = () => {
   const { setToast } = useLayout();
-  const { createUser } = useCreateQuery();
+  const { createUser, isLoading } = useCreateQuery();
   const [isInput, setIsInput] = useState<TInputForm>({});
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -50,8 +50,14 @@ export const ComponentCreate = () => {
           />
         </div>
       </div>
-      <button type="submit" className="btn btn-primary !mt-6">
-        Save
+      <button
+        type="submit"
+        className={
+          "btn btn-primary !mt-6" + (isLoading ? " btn-primary/50" : "")
+        }
+        disabled={isLoading}
+      >
+        {isLoading ? "Prosess..." : "Save"}
       </button>
     </form>
   );

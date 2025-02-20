@@ -10,7 +10,7 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const ComponentsAuthLoginForm = () => {
-  const { login, isRemember } = useAuth();
+  const { login, isRemember, loading } = useAuth();
   const [inputs, setInputs] = useState<TInputForm>({});
   const [showPasswd, setShowPasswd] = useState(false);
   const router = useRouter();
@@ -92,8 +92,9 @@ const ComponentsAuthLoginForm = () => {
       <button
         type="submit"
         className="btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
+        disabled={loading}
       >
-        Sign in
+        {loading ? "Loading..." : "Sign in"}
       </button>
     </form>
   );
