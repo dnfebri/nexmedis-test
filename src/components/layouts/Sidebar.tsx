@@ -43,7 +43,7 @@ export const Sidebar = () => {
         </button>
       </div>
       <div className="flex flex-col h-full relative">
-        <MenuSidebar />
+        <MenuSidebar setSidebarOpen={setSidebarOpen} />
         <div
           className={`flex justify-end ${
             !minimizeSidebar && "px-0"

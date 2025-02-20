@@ -4,7 +4,11 @@ import Link from "next/link";
 import { MENU_ITEMS } from "@/constants/menu_items";
 import { ICONS_MENU } from "@/constants/IconsMenu";
 
-export const MenuSidebar = () => {
+export const MenuSidebar = ({
+  setSidebarOpen,
+}: {
+  setSidebarOpen: (open: boolean) => void;
+}) => {
   return (
     <div className="sidebar overflow-auto no-scrollbar">
       <PerfectScrollbar className="relative h-[calc(100vh-80px)] py-4">
@@ -15,7 +19,11 @@ export const MenuSidebar = () => {
                 if (item.link) {
                   return (
                     <li className="nav-item" key={idx}>
-                      <Link href={item.link ?? ""} className="group">
+                      <Link
+                        href={item.link ?? ""}
+                        className="group"
+                        onClick={() => setSidebarOpen(false)}
+                      >
                         <div className="flex items-center">
                           {ICONS_MENU[item.icon as keyof typeof ICONS_MENU]}
                           <span className="text-black pl-3 dark:text-[#506690] dark:group-hover:text-white-dark">

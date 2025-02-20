@@ -17,8 +17,6 @@ const ComponentsAuthLoginForm = () => {
 
   useEffect(() => {
     const token = getCookie(COOKIES.tokenName);
-
-    console.log(token);
     if (token) {
       return router.replace("/");
     }
