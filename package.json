@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
     "@popperjs/core": "^2.11.8",
     "axios": "^1.7.9",
     "cookies-next": "^5.1.0",

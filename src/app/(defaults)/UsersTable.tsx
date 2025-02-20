@@ -1,28 +1,27 @@
 import { Pagination } from "@/components/pagination";
 import { TableComponent } from "@/components/table/TableComponent";
 import { TMetaData } from "@/types/meta-data";
+import { TUser } from "@/types/user.type";
 import Image from "next/image";
 import React, { useMemo } from "react";
-
-type TUser = {
-  id: number;
-  email: string;
-  first_name: string;
-  last_name: string;
-  avatar: string;
-};
 
 export const UsersTable = ({
   data,
   metadata,
   getIsPage,
   page,
+  handleShowModal,
 }: {
   loading?: boolean;
   data: TUser[];
   metadata: TMetaData;
   getIsPage: (props: string) => void;
   page?: string;
+  handleShowModal: (props: {
+    id: number;
+    edit?: "edit";
+    isPage?: string;
+  }) => void;
 }) => {
   const header = ["Avatar", "Email", "Name", "Action"];
 
@@ -49,7 +48,13 @@ export const UsersTable = ({
           </td>
           <td className="text-center">
             <div className="flex items-center justify-center gap-2">
-              <button type="button" className="badge bg-warning">
+              <button
+                type="button"
+                className="badge bg-warning"
+                onClick={() =>
+                  handleShowModal({ id: item.id, edit: "edit", isPage: page })
+                }
+              >
                 Edit
               </button>
               <button type="button" className="badge bg-danger">
