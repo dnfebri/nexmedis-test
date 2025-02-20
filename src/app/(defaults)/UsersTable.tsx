@@ -10,6 +10,7 @@ export const UsersTable = ({
   metadata,
   getIsPage,
   page,
+  deleteUser,
   handleShowModal,
 }: {
   loading?: boolean;
@@ -17,6 +18,7 @@ export const UsersTable = ({
   metadata: TMetaData;
   getIsPage: (props: string) => void;
   page?: string;
+  deleteUser: (id: number) => void;
   handleShowModal: (props: {
     id: number;
     edit?: "edit";
@@ -57,7 +59,11 @@ export const UsersTable = ({
               >
                 Edit
               </button>
-              <button type="button" className="badge bg-danger">
+              <button
+                type="button"
+                className="badge bg-danger"
+                onClick={() => deleteUser(item.id)}
+              >
                 Delete
               </button>
             </div>

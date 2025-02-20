@@ -8,6 +8,7 @@ import { TInputForm } from "@/types/inputForm";
 import { TUser } from "@/types/user.type";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export const useUserQuery = () => {
   const [metaData, setMetaData] = useState<typeof METADATA>(METADATA);
@@ -110,12 +111,52 @@ export const useUserQuery = () => {
     }
   }
 
+  async function approveDeleteUser(id: number) {
+    setIsLoading(true);
+    try {
+      await ApiAxios.delete(
+        `${DOMAIN_API.domain}${ENDPOINT.user.DEFAULT}/${id}`
+      );
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your User has been deleted.",
+        icon: "success",
+      });
+      router.push(ROUTES.DASHBOARD);
+    } catch (error: any) {
+      console.log("approveDeleteUser", error);
+      setToast({
+        error: true,
+        massage: "Delete failed",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  function deleteUser(id: number) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        approveDeleteUser(id);
+      }
+    });
+  }
+
   return {
     getUsers,
     getIsPage,
     getUserById,
     handleShowModal,
     updateUser,
+    deleteUser,
     isUser,
     metaData,
     isLoading,

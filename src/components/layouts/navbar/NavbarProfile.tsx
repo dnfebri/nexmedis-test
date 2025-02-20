@@ -1,11 +1,7 @@
 import Dropdown from "@/components/dropdown/Dropdown";
-import IconLockDots from "@/components/icon/icon-lock-dots";
 import IconLogout from "@/components/icon/icon-logout";
-import IconMail from "@/components/icon/icon-mail";
-import IconUser from "@/components/icon/icon-user";
 import { useAuth } from "@/hooks/useAuth";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
 export const NavbarProfile = () => {
@@ -56,34 +52,7 @@ export const NavbarProfile = () => {
               </div>
             </div>
           </li>
-          <li>
-            <Link href="/users/profile" className="dark:hover:text-white">
-              <IconUser className="h-4.5 w-4.5 shrink-0 mr-2" />
-              Profile
-            </Link>
-          </li>
-          <li>
-            <Link href="/apps/mailbox" className="dark:hover:text-white">
-              <IconMail className="h-4.5 w-4.5 shrink-0 mr-2" />
-              Inbox
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/auth/boxed-lockscreen"
-              className="dark:hover:text-white"
-            >
-              <IconLockDots className="h-4.5 w-4.5 shrink-0 mr-2" />
-              Lock Screen
-            </Link>
-          </li>
           <li className="border-t border-white-light dark:border-white-light/10">
-            {/* <form className="px-[1rem]" onSubmit={handleLogout}>
-              <div className="!py-3 text-danger flex items-center gap-2">
-                <IconLogout className="h-4.5 w-4.5 shrink-0 rotate-90 ltr:mr-2" />
-                <button type="submit">Sign Out</button>
-                </div>
-                </form> */}
             <button onClick={handleLogout} className="!py-3 text-danger">
               <IconLogout className="h-4.5 w-4.5 shrink-0 rotate-90 mr-2" />
               Sign Out

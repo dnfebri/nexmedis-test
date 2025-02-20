@@ -13,6 +13,7 @@ export const ComponentListUser = () => {
     handleShowModal,
     isLoading,
     updateUser,
+    deleteUser,
   } = useUserQuery();
   return (
     <div className="grid grid-cols-1 gap-6">
@@ -29,6 +30,7 @@ export const ComponentListUser = () => {
           getIsPage={getIsPage}
           metadata={metaData}
           handleShowModal={handleShowModal}
+          deleteUser={deleteUser}
         />
       </div>
       <UserUpdateModal
