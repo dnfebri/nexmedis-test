@@ -5,6 +5,7 @@ import { COOKIES } from "@/constants/common";
 import { useAuth } from "@/hooks/useAuth";
 import { TInputForm } from "@/types/inputForm";
 import { getCookie } from "cookies-next";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -96,6 +97,13 @@ const ComponentsAuthLoginForm = () => {
       >
         {loading ? "Loading..." : "Sign in"}
       </button>
+      <div>
+        <Link href="https://reqres.in" target="_blank">
+          <p className="text-info hover:text-blue-600 text-sm transition-all duration-300">
+            Reference API
+          </p>
+        </Link>
+      </div>
     </form>
   );
 };

@@ -14,7 +14,6 @@ export const NavbarProfile = () => {
     <div className="dropdown flex shrink-0">
       <Dropdown
         offset={[0, 8]}
-        // placement={`${false ? "bottom-start" : "bottom-end"}`}
         btnClassName="relative group block"
         button={
           <Image
